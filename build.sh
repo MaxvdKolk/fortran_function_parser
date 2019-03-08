@@ -7,9 +7,12 @@
 #
 
 #compiler flags:
-source /opt/intel/compilers_and_libraries_2019.2.184/mac/bin/compilervars.sh intel64
-source /opt/intel/compilers_and_libraries_2019.2.184/mac/mkl/bin/mklvars.sh intel64
-wait
+case "$OSTYPE" in 
+        darwin*)
+        source /opt/intel/compilers_and_libraries_2019.2.184/mac/bin/compilervars.sh intel64
+        source /opt/intel/compilers_and_libraries_2019.2.184/mac/mkl/bin/mklvars.sh intel64
+        wait
+esac
 
 MODCODE='function_parser.f90'       # module file name
 LIBOUT='libfparser.a'               # name of library
