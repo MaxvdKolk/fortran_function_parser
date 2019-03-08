@@ -9,10 +9,17 @@
 #compiler flags:
 case "$OSTYPE" in 
         darwin*)
-        source /opt/intel/compilers_and_libraries_2019.2.184/mac/bin/compilervars.sh intel64
-        source /opt/intel/compilers_and_libraries_2019.2.184/mac/mkl/bin/mklvars.sh intel64
-        wait
+        path=/opt/intel/compilers_and_libraries_2019.2.184/mac
+        ;;
+        linux*)
+        path=/opt/ud/intel_xe_2019u2/compilers_and_libraries_2019.2.187/linux
+        ;;
+        *)
+        ;;
 esac
+
+source $path/bin/compilervars.sh intel64
+source $path/mkl/bin/mklvars.sh intel64
 
 MODCODE='function_parser.f90'       # module file name
 LIBOUT='libfparser.a'               # name of library
