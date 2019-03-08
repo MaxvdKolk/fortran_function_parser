@@ -6,6 +6,11 @@
 #  Requires: FoBiS and Ford
 #
 
+#compiler flags:
+source /opt/intel/compilers_and_libraries_2019.2.184/mac/bin/compilervars.sh intel64
+source /opt/intel/compilers_and_libraries_2019.2.184/mac/mkl/bin/mklvars.sh intel64
+wait
+
 MODCODE='function_parser.f90'       # module file name
 LIBOUT='libfparser.a'               # name of library
 DOCDIR='./doc/'                     # build directory for documentation
@@ -15,13 +20,12 @@ BINDIR='./bin/'                     # build directory for unit tests
 LIBDIR='./lib/'                     # build directory for library
 FORDMD='fortran_function_parser.md' # FORD config file name
 
-#compiler flags:
 
-FCOMPILER='gnu' #Set compiler to gfortran
-FCOMPILERFLAGS='-c -O2 -std=f2008'
+FCOMPILER='intel' #Set compiler to gfortran
+FCOMPILERFLAGS='-c -Ofast -mkl -parallel -heap-arrays'
+#FCOMPILERFLAGS='-Ofast -mkl -parallel -heap-arrays'
 
 #build using FoBiS:
-
 if hash FoBiS.py 2>/dev/null; then
 
     echo "Building library..."
