@@ -30,6 +30,11 @@ BINDIR='./bin/'                     # build directory for unit tests
 LIBDIR='./lib/'                     # build directory for library
 FORDMD='fortran_function_parser.md' # FORD config file name
 
+rm -f ./lib/*.mod
+rm -f ./lib/*.o
+rm -f ./lib/*.a
+rm -f ./bin/tests
+rm -f ./bin/*.o
 
 FCOMPILER='intel' #Set compiler to gfortran
 FCOMPILERFLAGS='-c -Ofast -mkl -parallel -heap-arrays'
@@ -42,22 +47,22 @@ if hash FoBiS.py 2>/dev/null; then
 
     FoBiS.py build -compiler ${FCOMPILER} -cflags "${FCOMPILERFLAGS}" -dbld ${LIBDIR} -s ${SRCDIR} -dmod ./ -dobj ./ -t ${MODCODE} -o ${LIBOUT} -mklib static -colors
 
-    echo "Building test programs..."
+    #echo "Building test programs..."
 
-    FoBiS.py build -compiler ${FCOMPILER} -cflags "${FCOMPILERFLAGS}" -dbld ${BINDIR} -s ${TESTSRCDIR} -dmod ./ -dobj ./ -colors -libs ${LIBDIR}${LIBOUT} --include ${LIBDIR}
+    #FoBiS.py build -compiler ${FCOMPILER} -cflags "${FCOMPILERFLAGS}" -dbld ${BINDIR} -s ${TESTSRCDIR} -dmod ./ -dobj ./ -colors -libs ${LIBDIR}${LIBOUT} --include ${LIBDIR}
 
 else
     echo "FoBiS.py not found! Cannot build library. Install using: sudo pip install FoBiS.py"
 fi
 
 # build the documentation using FORD:
-
-if hash ford 2>/dev/null; then
-
-    echo "Building documentation..."
-
-    ford ${FORDMD}
-
-else
-    echo "Ford not found! Cannot build documentation. Install using: sudo pip install ford"
-fi
+#
+#if hash ford 2>/dev/null; then
+#
+#    echo "Building documentation..."
+#
+#    ford ${FORDMD}
+#
+#else
+#    echo "Ford not found! Cannot build documentation. Install using: sudo pip install ford"
+#fi
